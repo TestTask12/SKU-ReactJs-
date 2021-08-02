@@ -23,7 +23,7 @@ const Login = ({ login, isAuthenticated }) => {
     // Redirect them to the home page
 
     if (isAuthenticated) {
-        return <Redirect to='/' />
+        return <Redirect to='/product' />
     }
 
     return (

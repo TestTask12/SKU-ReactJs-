@@ -10,6 +10,8 @@ import {
     PASSWORD_RESET_SUCCESS, 
     PASSWORD_RESET_CONFIRM_FAIL, 
     PASSWORD_RESET_CONFIRM_SUCCESS, 
+    // PRODUCT_FAIL,
+    // PRODUCT_SUCCESS,
     LOGOUT
 } from './types';
 
@@ -84,6 +86,37 @@ export const load_user = () => async dispatch => {
 
 };
 
+export const signup = () => async dispatch => {
+    if (localStorage.getItem('access')) {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `JWT ${localStorage.getItem('access')}`,
+                'Accept': 'application/json'
+            }
+        };
+
+        try {
+            const res = await axios.get('http://127.0.0.1:8001/auth/register/', config);
+    
+            dispatch({
+                type:USER_LOADED_SUCCESS,
+                payload: res.data
+            });
+        } catch (err) {
+            dispatch({
+                type:USER_LOADED_FAIL
+            });
+        }
+
+    } else {
+        dispatch({
+            type:USER_LOADED_FAIL
+        });
+
+    }
+
+};
 export const login = (email, password) => async dispatch => {
     const config = {
         headers: {
@@ -94,7 +127,7 @@ export const login = (email, password) => async dispatch => {
     const body = JSON.stringify({ email, password }); 
 
     try {
-        const res = await axios.post('http://localhost:8000/auth/jwt/create/', body, config);
+        const res = await axios.post('http://127.0.0.1:8001/auth/login/', body, config);
 
         dispatch({
             type:LOGIN_SUCCESS,
@@ -153,6 +186,38 @@ export const reset_password_confirm = (uid, token, new_password, re_new_password
 
     }
 };
+
+// export const product = () => async dispatch => {
+//     if (localStorage.getItem('access')) {
+//         const config = {
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'Authorization': `JWT ${localStorage.getItem('access')}`,
+//                 'Accept': 'application/json'
+//             }
+//         };
+
+//         try {
+//             const res = await axios.get('http://localhost:8001/api/product/', config);
+    
+//             dispatch({
+//                 type:PRODUCT_SUCCESS,
+//                 payload: res.data
+//             });
+//         } catch (err) {
+//             dispatch({
+//                 type:PRODUCT_FAIL
+//             });
+//         }
+
+//     } else {
+//         dispatch({
+//             type:PRODUCT_FAIL
+//         });
+
+//     }
+
+// };
 
 
 

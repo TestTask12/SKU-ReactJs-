@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
 import './Navbar.scss';
+import "animate.css/animate.min.css";
+import "font-awesome/css/font-awesome.min.css";
 
 
 const Navbar = ({ logout, isAuthenticated }) => {
@@ -21,15 +23,15 @@ const Navbar = ({ logout, isAuthenticated }) => {
 
   const authLinks = () => (
     <li className='nav-item'>
-       <a className='nav-link' href='#!' onClick={logout}>Logout</a>
+       <Link className='nav-link' to="/" onClick={logout}>Logout</Link>
     </li>
   );
   return (
-    <div className="gfg">
+    <div className="logo">
     <Fragment>
       <nav className='navbar'>
         <Link className='navbar-brand' to='/'>Shopping App</Link>
-        <Link className='navbar-brand' to='/'>Product</Link>
+        <Link className='navbar-brand' to='/product'>Product</Link>
         <button 
         className='navbar-toggler' 
         type='button' 
@@ -44,13 +46,15 @@ const Navbar = ({ logout, isAuthenticated }) => {
         {/* <div className='collapse navbar-collapse' id='navbarNav'> */}
           <ul className='navbar-nav'>
             <li className='nav-item active'>
-              <Link className='nav-link' to='/'>Cart</Link>
+            <i className="fa fa-search"></i>
+              <Link className="fa fa-shopping-cart" aria-hidden="true"></Link><br></br>
+
             </li>
             {isAuthenticated ? authLinks() : guestLinks()}
           </ul>
         {/* </div> */}
       </nav>
-      <hr class='my-4' />
+      <hr className='my-4' />
     </Fragment>
     </div>
   );

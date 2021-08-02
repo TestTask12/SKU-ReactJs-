@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { login } from '../actions/auth';
+import { signup } from '../actions/auth';
 
-const Login = ({ login, isAuthenticated }) => {
+const Signup = ({ signup, isAuthenticated }) => {
     const [formData, setFormData] = useState({
         email: '',
+        username: '',
         password: ''
     });
 
-    const { email, password } = formData;
+    const { email, username, password } = formData;
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
     
     const onSubmit = e => {
         e.preventDefault();
 
-        login (email, password);
+        signup (email, username, password);
     };
 
     // Is the user authenticated?
@@ -48,7 +49,7 @@ const Login = ({ login, isAuthenticated }) => {
                         type='username'
                         placeholder='UserName'
                         name='username'
-                        value={email}
+                        value={username}
                         onChange={e => onChange(e)}
                         required
                      />
@@ -68,7 +69,7 @@ const Login = ({ login, isAuthenticated }) => {
                 <button className='btn btn-primary' type='submit'>Sign Up</button>
             </form>
             <p className='mt-3'>
-               If You have an account? <Link to='/signup'>Login</Link>
+               If You have an account? <Link to='/login'>Login</Link>
             </p>
             <p className='mt-3'>
                 Forgot your Password? <Link to='/reset-password'>Forgot Password</Link>
@@ -83,4 +84,4 @@ const mapStateToProps = state => ({
 
     });
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { signup })(Signup);

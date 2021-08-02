@@ -1,15 +1,54 @@
+$roboto: 'Roboto';
+$cursive_font: 'Satisfy';
+$round: 'Varela Round';
+$cta: orange;
+$bg: rgba(118, 136, 145, 0.74);
+$light_bg: rgb(55, 59, 55);
+$text: rgb(100, 97, 97);
+$white: white;
+
+
+
 .gfg {
   padding: 5px;
   padding-left: 15px;
-  
+
   h1 {
     color: white;
     font-family: sans-serif;
   }
-  }
+}
 
-.navbar-brand{
+.navbar-brand {
   letter-spacing: normal;
 }
 
-  
+.container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 30px 50px 20px 50px;
+  box-sizing: border-box;
+  background-color: $bg;
+}
+
+
+.logo {
+    font-size: 20px;
+    text-transform: uppercase;
+    color: rgba($white, .7);
+    justify-content: space-between;
+    width: 100%;
+    color: $white;
+}
+
+.fa {
+  cursor: pointer;
+  font-size: 30px;
+
+  +.fa {
+    margin-left: 5px;
+    font-size: 35px;
+  }
+}
