@@ -86,37 +86,37 @@ export const load_user = () => async dispatch => {
 
 };
 
-export const signup = () => async dispatch => {
-    if (localStorage.getItem('access')) {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `JWT ${localStorage.getItem('access')}`,
-                'Accept': 'application/json'
-            }
-        };
+// export const signup = () => async dispatch => {
+//     if (localStorage.getItem('access')) {
+//         const config = {
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'Authorization': `JWT ${localStorage.getItem('access')}`,
+//                 'Accept': 'application/json'
+//             }
+//         };
 
-        try {
-            const res = await axios.get('http://127.0.0.1:8001/auth/register/', config);
+//         try {
+//             const res = await axios.get('http://127.0.0.1:8001/auth/register/', config);
     
-            dispatch({
-                type:USER_LOADED_SUCCESS,
-                payload: res.data
-            });
-        } catch (err) {
-            dispatch({
-                type:USER_LOADED_FAIL
-            });
-        }
+//             dispatch({
+//                 type:USER_LOADED_SUCCESS,
+//                 payload: res.data
+//             });
+//         } catch (err) {
+//             dispatch({
+//                 type:USER_LOADED_FAIL
+//             });
+//         }
 
-    } else {
-        dispatch({
-            type:USER_LOADED_FAIL
-        });
+//     } else {
+//         dispatch({
+//             type:USER_LOADED_FAIL
+//         });
 
-    }
+//     }
 
-};
+// };
 export const login = (email, password) => async dispatch => {
     const config = {
         headers: {
@@ -152,7 +152,7 @@ export const reset_password = (email) => async dispatch => {
     const body = JSON.stringify({ email });
 
     try {
-        await axios.post('http://localhost:8000/auth/users/reset_password', body, config);
+        await axios.post('http://localhost:8001/auth/reset-password', body, config);
 
         dispatch({
             type: PASSWORD_RESET_SUCCESS

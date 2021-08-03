@@ -47,7 +47,10 @@ const Navbar = ({ logout, isAuthenticated }) => {
           <ul className='navbar-nav'>
             <li className='nav-item active'>
             <i className="fa fa-search"></i>
-              <Link className="fa fa-shopping-cart" aria-hidden="true"></Link><br></br>
+            
+
+            {/* Add to cart */}
+              <Link className="fa fa-shopping-cart" aria-hidden="true" to="/add-product"></Link><br></br>
 
             </li>
             {isAuthenticated ? authLinks() : guestLinks()}

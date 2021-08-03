@@ -1,3 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
 $roboto: 'Roboto';
 $cursive_font: 'Satisfy';
 $round: 'Varela Round';
@@ -5,25 +12,18 @@ $cta: orange;
 $bg: rgba(118, 136, 145, 0.74);
 $light_bg: rgb(55, 59, 55);
 $text: rgb(100, 97, 97);
-$white: white;
+$white: rgb(117, 33, 33);
 
 
 
-.gfg {
-  padding: 5px;
-  padding-left: 15px;
-
-  h1 {
-    color: white;
-    font-family: sans-serif;
-  }
+.dFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.navbar-brand {
-  letter-spacing: normal;
-}
 
-.container{
+.container {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -35,12 +35,12 @@ $white: white;
 
 
 .logo {
-    font-size: 20px;
-    text-transform: uppercase;
-    color: rgba($white, .7);
-    justify-content: space-between;
-    width: 100%;
-    color: $white;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: rgba($white, .7);
+  justify-content: space-between;
+  width: 100%;
+  color: $white;
 }
 
 .fa {
@@ -51,4 +51,85 @@ $white: white;
     margin-left: 5px;
     font-size: 35px;
   }
+}
+
+.card {
+  width: 30%;
+  border-radius: 15px;
+  @extend .dFlex;
+  flex-direction: column;
+  position: relative;
+  transform: scale(.8);
+  transition: all .3s ease-in-out;
+  margin-bottom: 50px;
+
+  .img {
+    width: 200px;
+  }
+}
+
+.main_content {
+  @extend .dFlex;
+  position: relative;
+  width: 70%;
+  height: 100%;
+  margin: 50px auto;
+  padding: 50px 0 0;
+  box-sizing: border-box;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  display: grid;
+
+  //grid-template-columns: 1fr 1fr;
+    .card_header {
+      @extend .dFlex;
+      flex-direction: column;
+      color: $white;
+      margin: 20px 0;
+
+      h2 {
+        font-size: 25px;
+      }
+
+    p {
+      font-size: 20px;
+      text-align: center;
+      color: rgba($white, .5);
+      margin: 8px 0;
+    }
+
+    .price {
+      font-size: 25px;
+      color: $cta;
+    }
+  }
+}
+
+.card:hover {
+  background-color: $light_bg;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.card:hover {
+  .btn {
+    background-color: $cta;
+    color: $white;
+  }
+}
+
+
+
+.btn {
+  width: 130px;
+  height: 35px;
+  font-size: 14px;
+  background-color: $text;
+  border-radius: 35px;
+  color: rgba($white, .5);
+
+  cursor: pointer;
+  position: relative;
+  transition: background-color .3s ease;
+  overflow: hidden;
 }

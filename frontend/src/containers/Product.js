@@ -4,41 +4,47 @@ import React from 'react'
 import { Component } from 'react';
 
 class Product extends Component {
-    constructor(){
+    constructor() {
         super()
-        this.state={
-            items:null
+        this.state = {
+            items: null
         }
     }
-    componentDidMount()
-    {
-        fetch('http://localhost:8002/api/product/').then((result)=>{
-            result.json().then((data)=>{
-                console.log("data",data);
-                this.setState({items:data})
+    componentDidMount() {
+        fetch('http://localhost:8000/api/product/').then((result) => {
+            result.json().then((data) => {
+                console.log("data", data);
+                this.setState({ items: data })
             })
         })
     }
-    render(){
-        return(
-            <div>
-            {
-                this.state.items ?
-                this.state.items.map((item)=>
-                <div>
-                    <span>Id: {item.id} </span>
-                    <span>Name: {item.name} </span>
-                    <span>Price: {item.price} </span>
-                    <span>Description: {item.description} </span>
-                </div>
+    render() {
+        return (
+            <div className="card">
 
-                )
-                :null
-            }
+                {
+                    this.state.items ?
+                        this.state.items.map((item, index) =>
+                        <div className="main_content">
+                            <div className="card_header"  key={index}>
+                                <div className="">
+                                    <img src={item.image} alt=""/>
+                                </div>
+                                <h2>{item.name} </h2>
+                                <p className="price">Price: {item.price} </p>
+                                <span>{item.description} </span>
+                                <button >Add to Cart</button>
+                            </div>
+                        </div>
+                        
 
+                        )
+                        : null
+                }
+                
             </div>
         );
     }
 }
 export default Product;
-            
+
